@@ -220,10 +220,10 @@ export default function KnowledgeBaseView({
   };
 
   return (
-    <div className="flex gap-6 animate-in fade-in duration-300">
+    <div className="flex flex-col lg:flex-row gap-6 animate-in fade-in duration-300">
       
       {/* Sidebar Filters Panel */}
-      <aside className="w-72 shrink-0 space-y-6">
+      <aside className="w-full lg:w-72 shrink-0 space-y-6">
         <div className="glass-panel rounded-xl p-5 space-y-6 border border-slate-200">
           <h3 className="font-mono text-xs text-indigo-600 uppercase tracking-widest font-bold">Document Filters</h3>
           
@@ -359,27 +359,27 @@ export default function KnowledgeBaseView({
 
         {/* Documents Table List */}
         <div className="glass-panel rounded-xl overflow-hidden border border-slate-200">
-          <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+          <div className="p-4 border-b border-slate-100 flex flex-col sm:flex-row gap-3 sm:items-center justify-between bg-slate-50/50">
             <h2 className="text-lg font-bold text-slate-800">Documents</h2>
             
             {/* Search filtering */}
-            <div className="flex items-center gap-3">
-              <div className="relative">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto">
+              <div className="relative flex-1 sm:flex-initial">
                 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="bg-slate-50 border border-slate-200 rounded-lg pl-9 pr-4 py-1.5 text-xs text-slate-800 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 transition-all w-56 placeholder-slate-400"
+                  className="bg-slate-50 border border-slate-200 rounded-lg pl-9 pr-4 py-1.5 text-xs text-slate-800 focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600 transition-all w-full sm:w-56 placeholder-slate-400"
                   placeholder="Filter current view..."
                 />
               </div>
-              <button className="w-9 h-9 flex items-center justify-center bg-white rounded-lg text-slate-400 hover:text-indigo-600 border border-slate-200 transition-all cursor-pointer">
+              <button className="w-9 h-9 flex items-center justify-center bg-white rounded-lg text-slate-400 hover:text-indigo-600 border border-slate-200 transition-all cursor-pointer shrink-0">
                 <span className="material-symbols-outlined text-[18px]">sort</span>
               </button>
               <button 
                 onClick={() => alert("Re-syncing metadata files...")}
-                className="w-9 h-9 flex items-center justify-center bg-white rounded-lg text-slate-400 hover:text-indigo-600 border border-slate-200 transition-all cursor-pointer"
+                className="w-9 h-9 flex items-center justify-center bg-white rounded-lg text-slate-400 hover:text-indigo-600 border border-slate-200 transition-all cursor-pointer shrink-0"
               >
                 <span className="material-symbols-outlined text-[18px]">sync</span>
               </button>
@@ -424,7 +424,7 @@ export default function KnowledgeBaseView({
                     </td>
                     <td className="px-4 py-4 font-mono text-slate-500 text-xs">{doc.size}</td>
                      <td className="px-4 py-4 text-right">
-                      <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex items-center justify-end gap-1 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                         <button 
                           onClick={() => setPreviewDoc(doc)}
                           className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-indigo-600 cursor-pointer" 

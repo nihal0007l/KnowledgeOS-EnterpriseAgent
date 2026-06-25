@@ -282,17 +282,17 @@ export default function AIChatView({
     <div className="flex-1 flex overflow-hidden h-[calc(100vh-100px)] animate-in fade-in duration-300">
       
       {/* Center Chat Feed Area */}
-      <div className="flex-1 flex flex-col relative bg-white border border-slate-200 rounded-2xl overflow-hidden mr-6 shadow-sm">
+      <div className="flex-1 flex flex-col relative bg-white border border-slate-200 rounded-2xl overflow-hidden xl:mr-6 shadow-sm">
         
         {/* Model Selection Header */}
-        <div className="flex items-center justify-between px-6 py-3 border-b border-slate-100 bg-slate-50/80">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between px-4 sm:px-6 py-3 border-b border-slate-100 bg-slate-50/80 gap-3">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-indigo-600 animate-pulse" />
             <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-400">Active Modeling Hub</span>
           </div>
  
           {/* Selector Tabs */}
-          <div className="flex bg-slate-200/60 p-1 rounded-xl">
+          <div className="flex bg-slate-200/60 p-1 rounded-xl overflow-x-auto max-w-full custom-scrollbar shrink-0">
             <button
               onClick={() => handleSelectModel('atlas-4')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-sans font-bold transition-all cursor-pointer ${

@@ -53,7 +53,7 @@ export default function WorkflowsView() {
     <div className="space-y-6 animate-in fade-in duration-300">
       
       {/* Workflow View Header */}
-      <section className="flex justify-between items-end mb-6">
+      <section className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div>
           <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Active Automation Workflows</h2>
           <p className="text-sm text-slate-500">Configure and execute event-driven intelligence models.</p>
@@ -61,7 +61,7 @@ export default function WorkflowsView() {
         <button
           onClick={handleRunWorkflow}
           disabled={isExecuting}
-          className="bg-indigo-600 hover:bg-indigo-700 text-white font-sans font-bold text-xs px-5 py-3 rounded-xl hover:opacity-95 active:scale-[0.98] transition-all shadow-md shadow-indigo-100 flex items-center gap-2 cursor-pointer"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white font-sans font-bold text-xs px-5 py-3 rounded-xl hover:opacity-95 active:scale-[0.98] transition-all shadow-md shadow-indigo-100 flex items-center gap-2 cursor-pointer w-full sm:w-auto justify-center"
         >
           <span className="material-symbols-outlined text-[18px]">play_arrow</span>
           {isExecuting ? 'Running Step Logic...' : 'Run Global Workflow'}

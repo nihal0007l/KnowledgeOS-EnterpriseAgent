@@ -8,9 +8,10 @@ interface HeaderProps {
   onDocsClick: () => void;
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
+  onToggleSidebar: () => void;
 }
 
-export default function Header({ user, onSearch, onUpgradeClick, onDocsClick, theme, onToggleTheme }: HeaderProps) {
+export default function Header({ user, onSearch, onUpgradeClick, onDocsClick, theme, onToggleTheme, onToggleSidebar }: HeaderProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [showHistory, setShowHistory] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -29,19 +30,28 @@ export default function Header({ user, onSearch, onUpgradeClick, onDocsClick, th
   ];
 
   return (
-    <header className="fixed top-0 right-0 w-[calc(100%-256px)] h-16 bg-white/80 backdrop-blur-xl border-b border-slate-200 flex justify-between items-center px-6 z-40">
+    <header className="fixed top-0 right-0 w-full md:w-[calc(100%-256px)] h-16 bg-white/80 backdrop-blur-xl border-b border-slate-200 flex justify-between items-center px-4 md:px-6 z-40">
       {/* Search Input & Top Navigation */}
-      <div className="flex items-center gap-10 flex-1">
-        <div className="relative w-full max-w-md">
+      <div className="flex items-center gap-3 md:gap-10 flex-1">
+        {/* Mobile Sidebar Toggle Hamburger */}
+        <button 
+          onClick={onToggleSidebar}
+          className="p-1.5 -ml-1 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 md:hidden flex items-center justify-center cursor-pointer"
+          title="Toggle Menu"
+        >
+          <span className="material-symbols-outlined text-2xl">menu</span>
+        </button>
+
+        <div className="relative w-full max-w-[180px] sm:max-w-md">
           <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
           <input
             type="text"
             value={searchQuery}
             onChange={handleSearchChange}
-            className="w-full bg-slate-50 border border-slate-200 rounded-full py-1.5 pl-10 pr-12 text-sm text-slate-800 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder-slate-400"
-            placeholder="Global search (⌘K)"
+            className="w-full bg-slate-50 border border-slate-200 rounded-full py-1.5 pl-10 pr-3 sm:pr-12 text-sm text-slate-800 focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder-slate-400"
+            placeholder="Search..."
           />
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 flex gap-0.5">
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 hidden sm:flex gap-0.5">
             <kbd className="px-1.5 py-0.5 rounded border border-slate-200 bg-white text-[9px] font-mono text-slate-400">⌘</kbd>
             <kbd className="px-1.5 py-0.5 rounded border border-slate-200 bg-white text-[9px] font-mono text-slate-400">K</kbd>
           </div>
@@ -55,12 +65,12 @@ export default function Header({ user, onSearch, onUpgradeClick, onDocsClick, th
       </div>
 
       {/* Right Side Controls */}
-      <div className="flex items-center gap-4 relative">
+      <div className="flex items-center gap-1.5 sm:gap-4 relative">
         {/* History Toggle */}
         <div className="relative">
           <button 
             onClick={() => { setShowHistory(!showHistory); setShowProfileMenu(false); }}
-            className={`p-2 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-colors cursor-pointer ${showHistory ? 'bg-slate-100 text-indigo-600' : ''}`}
+            className={`p-1.5 sm:p-2 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-colors cursor-pointer ${showHistory ? 'bg-slate-100 text-indigo-600' : ''}`}
             title="Activity History"
           >
             <span className="material-symbols-outlined text-lg">history</span>
@@ -83,7 +93,7 @@ export default function Header({ user, onSearch, onUpgradeClick, onDocsClick, th
         {/* Dark/Light Mode Theme Indicator */}
         <button 
           onClick={onToggleTheme}
-          className="p-2 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-colors cursor-pointer"
+          className="p-1.5 sm:p-2 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-colors cursor-pointer"
           title="Toggle Theme"
         >
           <span className="material-symbols-outlined text-lg">
@@ -91,12 +101,12 @@ export default function Header({ user, onSearch, onUpgradeClick, onDocsClick, th
           </span>
         </button>
 
-        <div className="h-6 w-[1px] bg-slate-200 mx-1" />
+        <div className="h-6 w-[1px] bg-slate-200 mx-0.5 sm:mx-1" />
 
         {/* Upgrade Button */}
         <button 
           onClick={onUpgradeClick}
-          className="bg-indigo-50 text-indigo-600 border border-indigo-100 font-sans font-bold text-xs px-4 py-2 rounded-lg hover:bg-indigo-100 hover:scale-[1.02] transition-all cursor-pointer"
+          className="hidden sm:block bg-indigo-50 text-indigo-600 border border-indigo-100 font-sans font-bold text-xs px-4 py-2 rounded-lg hover:bg-indigo-100 hover:scale-[1.02] transition-all cursor-pointer whitespace-nowrap"
         >
           Upgrade
         </button>

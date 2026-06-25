@@ -14,13 +14,13 @@ export default function AnalyticsView() {
     <div className="space-y-6 animate-in fade-in duration-300">
       
       {/* Analytics view header */}
-      <section className="flex justify-between items-end mb-6">
+      <section className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
         <div>
           <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Analytics Overview</h2>
           <p className="text-sm text-slate-500">Monitoring enterprise intelligence performance across all clusters.</p>
         </div>
         
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <div className="flex bg-slate-100 rounded-lg p-1 border border-slate-200">
             {(['24h', '7d', '30d'] as const).map((range) => (
               <button
@@ -29,7 +29,7 @@ export default function AnalyticsView() {
                   setActiveRange(range);
                   alert(`Filtering analytics metrics for past ${range}`);
                 }}
-                className={`px-4 py-1.5 rounded font-sans font-bold text-xs cursor-pointer transition-all ${
+                className={`px-3 sm:px-4 py-1.5 rounded font-sans font-bold text-xs cursor-pointer transition-all ${
                   activeRange === range
                     ? 'bg-white text-indigo-600 shadow-sm'
                     : 'text-slate-500 hover:text-slate-800'
@@ -42,7 +42,7 @@ export default function AnalyticsView() {
           
           <button 
             onClick={() => alert("Downloading CSV of performance analytics metrics...")}
-            className="flex items-center gap-1.5 px-4 py-2 bg-white border border-slate-200 rounded-lg font-sans font-bold text-xs text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer shadow-sm"
+            className="flex items-center justify-center gap-1.5 px-4 py-2 bg-white border border-slate-200 rounded-lg font-sans font-bold text-xs text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer shadow-sm flex-1 sm:flex-none"
           >
             <span className="material-symbols-outlined text-[16px]">download</span>
             Export

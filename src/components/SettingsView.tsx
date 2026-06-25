@@ -75,7 +75,7 @@ export default function SettingsView({ user, setUser }: SettingsViewProps) {
           <div className="glass-card rounded-2xl p-6 space-y-5 border border-slate-200 bg-white shadow-sm">
             <h3 className="font-mono text-xs text-indigo-600 uppercase tracking-widest border-b border-slate-100 pb-2 font-bold">User Profile Settings</h3>
             
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-slate-500">Full Name</label>
                 <input

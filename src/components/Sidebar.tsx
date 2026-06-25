@@ -7,9 +7,11 @@ interface SidebarProps {
   user: User;
   onLogout: () => void;
   onRequestClick: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export default function Sidebar({ activeTab, setActiveTab, user, onLogout, onRequestClick }: SidebarProps) {
+export default function Sidebar({ activeTab, setActiveTab, user, onLogout, onRequestClick, isOpen, onClose }: SidebarProps) {
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
     { id: 'knowledge', label: 'Knowledge Base', icon: 'folder_open' },
@@ -22,20 +24,34 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout, onReq
   const handleTabClick = (tabId: string) => {
     playUiClick();
     setActiveTab(tabId);
+    onClose();
   };
 
   const handleNewRequestClick = () => {
     playUiClick();
     onRequestClick();
+    onClose();
   };
 
   const handleLogoutClick = () => {
     playUiClick();
     onLogout();
+    onClose();
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-full w-64 border-r border-slate-200 bg-white flex flex-col py-6 z-[60]">
+    <>
+      {/* Mobile Sidebar Overlay */}
+      {isOpen && (
+        <div 
+          onClick={onClose}
+          className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-50 md:hidden"
+        />
+      )}
+
+      <aside className={`fixed left-0 top-0 h-full w-64 border-r border-slate-200 bg-white flex flex-col py-6 z-50 md:z-[60] transition-transform duration-300 ${
+        isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+      }`}>
       {/* Branding */}
       <div className="px-6 mb-8 flex items-center justify-between">
         <div>
@@ -117,5 +133,6 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout, onReq
         </button>
       </div>
     </aside>
+    </>
   );
 }

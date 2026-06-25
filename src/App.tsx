@@ -15,6 +15,7 @@ export default function App() {
   // Global States
   const [user, setUser] = useState<User | null>(null);
   const [activeTab, setActiveTab] = useState<string>('dashboard');
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [showLogsConsole, setShowLogsConsole] = useState(false);
   const [showDocsModal, setShowDocsModal] = useState(false);
@@ -478,6 +479,8 @@ Recent specifications indicate a 14% improvement in error correction overhead, p
         user={user}
         onLogout={() => setUser(null)}
         onRequestClick={handleRunGlobalAudit}
+        isOpen={mobileSidebarOpen}
+        onClose={() => setMobileSidebarOpen(false)}
       />
 
       {/* Top Header Layout */}
@@ -488,10 +491,11 @@ Recent specifications indicate a 14% improvement in error correction overhead, p
         onDocsClick={() => setShowDocsModal(true)}
         theme={theme}
         onToggleTheme={handleToggleTheme}
+        onToggleSidebar={() => setMobileSidebarOpen(!mobileSidebarOpen)}
       />
 
       {/* Main Workspace Frame container */}
-      <main className="ml-64 pt-20 p-6 min-h-screen">
+      <main className="md:ml-64 pt-20 p-4 md:p-6 min-h-screen">
         <div className="max-w-7xl mx-auto pb-10">
           {renderActiveView()}
         </div>

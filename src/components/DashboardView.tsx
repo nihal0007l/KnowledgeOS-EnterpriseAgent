@@ -148,16 +148,16 @@ export default function DashboardView({
             <p className="text-indigo-100/90 text-lg max-w-lg leading-relaxed">
               Your intelligence cluster is synchronized. 12 new insights discovered from today's document sync.
             </p>
-            <div className="flex gap-4 pt-4">
+            <div className="flex flex-wrap gap-3 pt-4">
               <button 
                 onClick={handleAuditClick}
-                className="bg-indigo-600 text-white px-6 py-3.5 rounded-xl font-sans font-bold text-sm hover:bg-indigo-500 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer shadow-lg shadow-indigo-600/20"
+                className="bg-indigo-600 text-white px-5 sm:px-6 py-3 rounded-xl font-sans font-bold text-xs sm:text-sm hover:bg-indigo-500 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer shadow-lg shadow-indigo-600/20 whitespace-nowrap"
               >
                 Run Global Audit
               </button>
               <button 
                 onClick={handleViewLogsClick}
-                className="bg-white/5 text-white border border-white/15 px-6 py-3.5 rounded-xl font-sans font-bold text-sm hover:bg-white/10 active:scale-[0.99] transition-all cursor-pointer"
+                className="bg-white/5 text-white border border-white/15 px-5 sm:px-6 py-3 rounded-xl font-sans font-bold text-xs sm:text-sm hover:bg-white/10 active:scale-[0.99] transition-all cursor-pointer whitespace-nowrap"
               >
                 View Live Logs
               </button>
@@ -209,15 +209,15 @@ export default function DashboardView({
         {/* Recent Activity Card */}
         <div className="lg:col-span-8 flex flex-col">
           <div className="glass-card rounded-2xl flex-1 flex flex-col bg-white">
-            <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+            <div className="p-4 sm:p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50/50">
               <div>
-                <h4 className="text-xl font-bold text-slate-800">Recent Workspace Activity</h4>
+                <h4 className="text-lg sm:text-xl font-bold text-slate-800">Recent Workspace Activity</h4>
                 <p className="text-xs text-slate-400 mt-1">Timeline logs of background workers and secure indexing runs.</p>
               </div>
-              <div className="flex gap-2.5">
+              <div className="flex flex-wrap gap-2.5">
                 <button 
                   onClick={handleDownloadActivityLogs}
-                  className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-lg font-sans font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer"
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-lg font-sans font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap"
                   title="Download logs immediately as markdown"
                 >
                   <span className="material-symbols-outlined text-xs">download</span>
@@ -225,7 +225,7 @@ export default function DashboardView({
                 </button>
                 <button 
                   onClick={() => setActiveTab('knowledge')}
-                  className="bg-indigo-50 hover:bg-indigo-100 text-indigo-600 px-3.5 py-2 rounded-lg font-sans font-bold text-xs flex items-center gap-1 cursor-pointer"
+                  className="bg-indigo-50 hover:bg-indigo-100 text-indigo-600 px-3.5 py-2 rounded-lg font-sans font-bold text-xs flex items-center gap-1 cursor-pointer whitespace-nowrap"
                 >
                   Manage Corpus
                   <span className="material-symbols-outlined text-xs">arrow_forward</span>
